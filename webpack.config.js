@@ -28,12 +28,7 @@ module.exports = {
       },
       {
         test: /\.css$/i,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader
-          },
-          'css-loader'
-        ]
+        use: [MiniCssExtractPlugin.loader, 'css-loader']
       },
       {
         test: /\.(png|jpg|svg)$/i,
@@ -49,10 +44,11 @@ module.exports = {
       template: path.resolve(__dirname, 'public/index.html')
     }),
     new MiniCssExtractPlugin({
-      filename: 'style.[contentHash].css'
+      filename: 'style.[contenthash].css'
     }),
     new Dotenv()
   ],
+  performance: { hints: false },
 
   devServer: {
     historyApiFallback: true,
