@@ -6,12 +6,13 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 
 module.exports = {
-  entry: path.resolve(__dirname, './src/index.js'),
+  entry: path.resolve(__dirname, 'src/index.js'),
   output: {
-    path: path.resolve(__dirname, './dist'),
+    path: path.resolve(__dirname, 'dist'),
     filename: 'bundle[contenthash].js',
     publicPath: '/'
   },
+
   mode: 'development',
   module: {
     rules: [
@@ -22,7 +23,7 @@ module.exports = {
           loader: 'babel-loader'
         },
         resolve: {
-          extensions: ['.js', '.jsx']
+          extensions: ['.js', '.jsx', '.json']
         }
       },
       {
@@ -40,6 +41,7 @@ module.exports = {
       }
     ]
   },
+  devtool: 'eval-source-map',
   plugins: [
     new CleanWebpackPlugin(),
     new HotModuleReplacementPlugin(),
@@ -56,6 +58,11 @@ module.exports = {
     historyApiFallback: true,
     contentBase: path.resolve(__dirname, 'dist'),
     hot: true,
-    port: 3030
+    port: 3030,
+    host: 'localhost',
+    compress: true,
+    disableHostCheck: true,
+    transportMode: 'ws',
+    injectClient: false
   }
 };
