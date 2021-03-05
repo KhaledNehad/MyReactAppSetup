@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { HotModuleReplacementPlugin } = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   entry: path.resolve(__dirname, 'src/index.js'),
@@ -47,7 +48,8 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: 'style.[contentHash].css'
-    })
+    }),
+    new Dotenv()
   ],
 
   devServer: {
